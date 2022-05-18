@@ -12,7 +12,10 @@ import javax.validation.constraints.*;
 @Setter
 @AllArgsConstructor(staticName = "build")
 @NoArgsConstructor
-public class StudentRequest {
+public class StudentRequestDTO {
+
+    @NotNull
+    private long id;
 
     @NotBlank(message = "Name is required")
     private String name;
@@ -25,6 +28,6 @@ public class StudentRequest {
     private String emailId;
 
     @NotBlank(message = "department is required")
-    private String department;
+    private String departmentName;
 
 }

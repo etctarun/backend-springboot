@@ -8,4 +8,6 @@ import org.springframework.stereotype.Repository;
 public interface StudentRepository extends JpaRepository<Student, Long> {
     // all CRUD database methods
     public Student findById(long id);
+
+    Student findFirstByOrderByIdDesc();
 }

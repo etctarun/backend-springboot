@@ -1,5 +1,6 @@
 package com.hightarun.backend.advice;
 
+import com.hightarun.backend.exception.InvalidDepartmentException;
 import com.hightarun.backend.exception.UserNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -24,7 +25,15 @@ public class ApplicationExceptionHandler {
 
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     @ExceptionHandler(UserNotFoundException.class)
-    public Map<String, String> handleBuissnessException(UserNotFoundException ex) {
+    public Map<String, String> handleUserNotFoundException(UserNotFoundException ex) {
+        Map<String, String> errorMap = new HashMap<>();
+        errorMap.put("errorMessage", ex.getMessage());
+        return errorMap;
+    }
+
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ExceptionHandler(InvalidDepartmentException.class)
+    public Map<String, String> handleInvalidDepartmentException(InvalidDepartmentException ex) {
         Map<String, String> errorMap = new HashMap<>();
         errorMap.put("errorMessage", ex.getMessage());
         return errorMap;
